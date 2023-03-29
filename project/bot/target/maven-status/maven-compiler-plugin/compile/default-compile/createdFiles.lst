@@ -1,4 +1,13 @@
-ru\tinkoff\edu\java\bot\configuration\ApplicationConfig.class
-ru\tinkoff\edu\java\bot\BotApplication.class
+project\bot\src\main\java\ru\tinkoff\edu\java\bot\configuration\SwaggerConfig.class
 META-INF\spring.components
+project\bot\src\main\java\ru\tinkoff\edu\java\bot\configuration\ApplicationConfig.class
+project\bot\src\main\java\ru\tinkoff\edu\java\bot\model\BotApplication.class
+project\bot\src\main\java\ru\tinkoff\edu\java\bot\controller\UpdatesController.class
 META-INF\spring-configuration-metadata.json
+project\bot\src\main\java\ru\tinkoff\edu\java\bot\model\response\ApiErrorResponse$ApiErrorResponseBuilder.class
+project\bot\src\main\java\ru\tinkoff\edu\java\bot\exception\BadRequestException.class
+project\bot\src\main\java\ru\tinkoff\edu\java\bot\model\request\LinkUpdateRequest.class
+project\bot\src\main\java\ru\tinkoff\edu\java\bot\controller\Updates.class
+project\bot\src\main\java\ru\tinkoff\edu\java\bot\handler\ControllerExceptionHandler.class
+project\bot\src\main\java\ru\tinkoff\edu\java\bot\exception\DataNotFoundException.class
+project\bot\src\main\java\ru\tinkoff\edu\java\bot\model\response\ApiErrorResponse.class
