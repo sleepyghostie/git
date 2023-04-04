@@ -1,5 +1,0 @@
-project.bot.src.main.java.ru.tinkoff.edu.java.bot.configuration.ApplicationConfig=org.springframework.boot.context.properties.ConfigurationProperties
-project.bot.src.main.java.ru.tinkoff.edu.java.bot.configuration.SwaggerConfig=org.springframework.stereotype.Component
-project.bot.src.main.java.ru.tinkoff.edu.java.bot.controller.UpdatesController=org.springframework.stereotype.Component
-project.bot.src.main.java.ru.tinkoff.edu.java.bot.handler.ControllerExceptionHandler=org.springframework.stereotype.Component
-project.bot.src.main.java.ru.tinkoff.edu.java.bot.model.BotApplication=org.springframework.stereotype.Component,org.springframework.boot.SpringBootConfiguration

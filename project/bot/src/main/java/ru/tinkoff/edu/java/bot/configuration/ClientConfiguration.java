@@ -1,4 +1,4 @@
-package scrapper.src.main.java.ru.tinkoff.edu.java.scrapper.configuration;
+package project.bot.src.main.java.ru.tinkoff.edu.java.bot.configuration;
 
 import io.netty.channel.ChannelOption;
 import io.netty.handler.timeout.ReadTimeoutHandler;
@@ -11,41 +11,21 @@ import org.springframework.http.client.reactive.ReactorClientHttpConnector;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.netty.http.client.HttpClient;
 
+import java.net.URI;
 import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
 @Configuration
-
 public class ClientConfiguration {
     public static final int TIMEOUT = 5000;
-    @Value("${github.webclient.base-url}")
-    private String gitHubBaseUrl;
-    @Value("${stackoverflow.webclient.base-url}")
-    private String stackOverflowBaseUrl;
+    @Value("${scrapper.base-url}")
+    private URI baseUrl;
 
     @Bean
-    public WebClient gitHubClientWithTimeout() {
+    public WebClient webClientWithTimeout() {
         final HttpClient httpClient = HttpClient
                 .create()
-                .option(ChannelOption.CONNECT_TIMEOUT_MILLIS, TIMEOUT)
-                .responseTimeout(Duration.ofMillis(TIMEOUT))
-                .doOnConnected(connection -> {
-                    connection.addHandlerLast(new ReadTimeoutHandler(TIMEOUT, TimeUnit.MILLISECONDS));
-                    connection.addHandlerLast(new WriteTimeoutHandler(TIMEOUT, TimeUnit.MILLISECONDS));
-                });
-        return WebClient.builder()
-                .baseUrl(gitHubBaseUrl)
-                .defaultHeader(HttpHeaders.ACCEPT, "application/vnd.github+json")
-                .defaultHeader(HttpHeaders.CONTENT_TYPE, "application/json")
-                .clientConnector(new ReactorClientHttpConnector(httpClient))
-                .build();
-    }
-
-    @Bean
-    public WebClient stackOverflowClientWithTimeout() {
-        final HttpClient httpClient = HttpClient
-                .create()
-                .compress(true)
+//                .compress(true)
                 .option(ChannelOption.CONNECT_TIMEOUT_MILLIS, TIMEOUT)
                 .responseTimeout(Duration.ofMillis(TIMEOUT))
                 .doOnConnected(connection -> {
@@ -54,9 +34,8 @@ public class ClientConfiguration {
                 });
 
         return WebClient.builder()
-                .baseUrl(stackOverflowBaseUrl)
+                .baseUrl(baseUrl.toString())
                 .defaultHeader(HttpHeaders.CONTENT_TYPE, "application/json")
-                .defaultHeader(HttpHeaders.ACCEPT_ENCODING, "gzip")
                 .clientConnector(new ReactorClientHttpConnector(httpClient))
                 .build();
     }

@@ -1,4 +1,4 @@
-package scrapper.src.main.java.ru.tinkoff.edu.java.scrapper.model.response;
+package project.bot.src.main.java.ru.tinkoff.edu.java.bot.model.request;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;

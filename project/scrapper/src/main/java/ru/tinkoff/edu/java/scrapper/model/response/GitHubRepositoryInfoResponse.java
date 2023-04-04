@@ -1,14 +1,16 @@
-package scrapper.src.main.java.ru.tinkoff.edu.java.scrapper.dto;
+package project.scrapper.src.main.java.ru.tinkoff.edu.java.scrapper.model.response;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.OffsetDateTime;
 
-@Data
+@Getter
+@Setter
+@AllArgsConstructor
 @NoArgsConstructor
-public class GitHubRepositoryInfoDto {
+@Builder
+public class GitHubRepositoryInfoResponse {
     private Long id;
     private String name;
     @JsonProperty("full_name")
@@ -16,8 +18,11 @@ public class GitHubRepositoryInfoDto {
     @JsonProperty("owner")
     private Owner owner;
 
-    @Data
+    @Getter
+    @Setter
+    @AllArgsConstructor
     @NoArgsConstructor
+    @Builder
     private static class Owner {
         @JsonProperty("login")
         private String ownerLogin;
