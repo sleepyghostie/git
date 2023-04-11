@@ -1,2 +1,4 @@
-app:
-  test: hello-bot
+app.test=3
+server.port=8080
+springdoc.override-with-generic-response=false
+springdoc.swagger-ui.path=/swagger-ui
