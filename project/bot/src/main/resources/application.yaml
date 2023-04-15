@@ -1,6 +1,6 @@
 app.test=3
-app.bot.token=${5868381124:AAFPTE065_TTJ6IiKuhe_ZYtrxmwgDWOz0w}
-app.bot.name=${mytinkofff_bot}
+app.bot.token=5868381124:AAFPTE065_TTJ6IiKuhe_ZYtrxmwgDWOz0w
+app.bot.name=mytinkofff_bot
 server.port=8080
 springdoc.override-with-generic-response=false
 springdoc.swagger-ui.path=/swagger-ui
