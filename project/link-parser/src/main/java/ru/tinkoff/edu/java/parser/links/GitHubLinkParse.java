@@ -1,10 +1,7 @@
 package src.main.java.ru.tinkoff.edu.java.parser.links;
 
-import src.main.java.ru.tinkoff.edu.java.parser.links.LinkParse;
-import src.main.java.ru.tinkoff.edu.java.parser.result.GitHubResultRecord;
-import src.main.java.ru.tinkoff.edu.java.parser.result.ParseResult;
-
-import java.util.Objects;
+import ru.tinkoff.edu.java.parser.result.GitHubResultRecord;
+import ru.tinkoff.edu.java.parser.result.ParseResult;
 
 public final class GitHubLinkParse extends LinkParse {
     @Override
@@ -16,3 +13,7 @@ public final class GitHubLinkParse extends LinkParse {
         return checkNext(link);
     }
 }
+Footer
+        © 2023 GitHub, Inc.
+        Footer navigation
+        Terms
