@@ -1,28 +1,28 @@
 package scrapper.src.main.java.ru.tinkoff.edu.java.scrapper.service.client;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.MediaType;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
+import reactor.util.retry.Retry;
 import ru.tinkoff.edu.java.parser.result.GitHubResultRecord;
-import ru.tinkoff.edu.java.scrapper.dto.GitHubRepositoryInfoDto;
+import ru.tinkoff.edu.java.scrapper.model.response.GitHubRepositoryInfoResponse;
+import java.time.Duration;
 
 @Service
 @RequiredArgsConstructor
 public class GitHubClient {
+    @Qualifier("gitHubClientWithTimeout")
     private final WebClient webClient;
-    @Value("${github.webclient.base-url}")
-    private String baseUrl;
 
-    public Mono<GitHubRepositoryInfoDto> getGitHubRepositoryInfo(GitHubResultRecord repository) {
-        String url = repository == null? baseUrl : "https://api.github.com/repos/" + repository.getResult();
+    public Mono<GitHubRepositoryInfoResponse> getGitHubRepositoryInfo(GitHubResultRecord repository) {
 
         return webClient.get()
-                .uri(url)
-                .accept(MediaType.valueOf("application/vnd.github+json"))
+                .uri(uriBuilder -> uriBuilder.path("/repos/{user}/{repo}")
+                        .build(repository.userName(), repository.repository()))
                 .retrieve()
-                .bodyToMono(GitHubRepositoryInfoDto.class);
+                .bodyToMono(GitHubRepositoryInfoResponse.class)
+                .retryWhen(Retry.fixedDelay(3, Duration.ofMillis(100)));
     }
 }
