@@ -18,15 +18,11 @@ import ru.tinkoff.edu.java.scrapper.model.response.LinkResponse;
 import ru.tinkoff.edu.java.scrapper.model.response.ListLinksResponse;
 import ru.tinkoff.edu.java.scrapper.service.LinkService;
 
-import java.net.URI;
-import java.util.ArrayList;
-
 @RestController
 @RequiredArgsConstructor
 public class LinksController implements Links {
     private final HttpServletRequest request;
     private final LinkService linkService;
-
 
     @Override
     public ResponseEntity<ListLinksResponse> getLinks(
@@ -35,7 +31,8 @@ public class LinksController implements Links {
                     required = true, schema = @Schema())
             @RequestHeader(
                     value = "Tg-Chat-Id")
-            Long tgChatId) {
+            Long tgChatId
+    ) {
         String accept = request.getHeader("Accept");
         if (accept != null && accept.contains("application/json")) {
             ListLinksResponse links = linkService.findAllLinksByTgChatId(tgChatId);
@@ -59,7 +56,8 @@ public class LinksController implements Links {
                     schema = @Schema())
             @Valid
             @RequestBody
-            AddLinkRequest body) {
+            AddLinkRequest body
+    ) {
         String accept = request.getHeader("Accept");
         if (accept != null && accept.contains("application/json")) {
             LinkResponse response = linkService.addLink(tgChatId, body);
@@ -84,7 +82,8 @@ public class LinksController implements Links {
                     schema = @Schema())
             @Valid
             @RequestBody
-            RemoveLinkRequest body) {
+            RemoveLinkRequest body
+    ) {
         String accept = request.getHeader("Accept");
         if (accept != null && accept.contains("application/json")) {
             LinkResponse response = linkService.removeLink(tgChatId, body);

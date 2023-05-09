@@ -10,7 +10,7 @@ import ru.tinkoff.edu.java.scrapper.service.SendMessageService;
 
 //@Service
 @RequiredArgsConstructor
-public class BotClient implements SendMessageService{
+public class BotClient implements SendMessageService {
     @Qualifier("botClientWithTimeout")
     private final WebClient webClient;
 

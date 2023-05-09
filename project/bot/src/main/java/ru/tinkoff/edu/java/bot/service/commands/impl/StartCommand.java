@@ -3,6 +3,7 @@ package project.bot.src.main.java.ru.tinkoff.edu.java.bot.service.commands.impl;
 import com.pengrad.telegrambot.model.Update;
 import com.pengrad.telegrambot.request.SendMessage;
 import org.springframework.stereotype.Component;
+import ru.tinkoff.edu.java.bot.service.commands.Command;
 
 @Component
 public class StartCommand implements Command {
@@ -18,6 +19,6 @@ public class StartCommand implements Command {
 
     @Override
     public SendMessage handle(Update update) {
-        return new SendMessage(update.message().chat().id(),"пользователь зарегестрирован");
+        return new SendMessage(update.message().chat().id(), "пользователь зарегестрирован");
     }
 }

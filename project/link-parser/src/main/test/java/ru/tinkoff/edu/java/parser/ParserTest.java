@@ -20,9 +20,11 @@ class ParserTest {
         parser = new Parser();
         LinkParse supportedLinkParse = LinkParse.link(
                 new GitHubLinkParse(),
-                new StackOverflowLinkParse());
+                new StackOverflowLinkParse()
+        );
         parser.setLinks(supportedLinkParse);
     }
+
     @ParameterizedTest
     @ValueSource(strings = {
             "https://github.com/Vitalik1995Rikov/",

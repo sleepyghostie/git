@@ -2,7 +2,6 @@ package project.scrapper.src.main.java.ru.tinkoff.edu.java.scrapper.service.rabb
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
-import org.springframework.stereotype.Service;
 import ru.tinkoff.edu.java.scrapper.configuration.ApplicationConfig;
 import ru.tinkoff.edu.java.scrapper.model.request.LinkUpdateRequest;
 import ru.tinkoff.edu.java.scrapper.service.SendMessageService;

@@ -10,7 +10,11 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import ru.tinkoff.edu.java.scrapper.model.request.AddLinkRequest;
 import ru.tinkoff.edu.java.scrapper.model.request.RemoveLinkRequest;
 import ru.tinkoff.edu.java.scrapper.model.response.ApiErrorResponse;
@@ -40,7 +44,8 @@ public interface Links {
                     in = ParameterIn.HEADER,
                     required = true,
                     schema = @Schema())
-            @RequestHeader(value = "Tg-Chat-Id") Long tgChatId);
+            @RequestHeader(value = "Tg-Chat-Id") Long tgChatId
+    );
 
     @Operation(summary = "Добавить отслеживание ссылки")
     @ApiResponses(value = {
@@ -70,7 +75,8 @@ public interface Links {
                     required = true,
                     schema = @Schema())
             @Valid
-            @RequestBody AddLinkRequest body);
+            @RequestBody AddLinkRequest body
+    );
 
     @Operation(summary = "Убрать отслеживание ссылки")
     @ApiResponses(value = {
@@ -106,5 +112,6 @@ public interface Links {
                     required = true,
                     schema = @Schema())
             @Valid
-            @RequestBody RemoveLinkRequest body);
+            @RequestBody RemoveLinkRequest body
+    );
 }

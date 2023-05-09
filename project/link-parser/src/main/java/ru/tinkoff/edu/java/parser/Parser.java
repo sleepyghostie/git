@@ -11,48 +11,32 @@ import ru.tinkoff.edu.java.parser.result.StackOverflowResultRecord;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class ParserTest {
-    private Parser parser;
+import java.net.MalformedURLException;
+import java.net.URISyntaxException;
+import java.net.URL;
+import ru.tinkoff.edu.java.parser.links.LinkParse;
+import ru.tinkoff.edu.java.parser.result.ParseResult;
 
-    @BeforeEach
-    void setUp() {
-        parser = new Parser();
-        LinkParse supportedLinkParse = LinkParse.link(
-                new GitHubLinkParse(),
-                new StackOverflowLinkParse());
-        parser.setLinks(supportedLinkParse);
-    }
-    @ParameterizedTest
-    @ValueSource(strings = {
-            "https://github.com/Vitalik1995Rikov/",
-            "https://github.com/",
-            "https://stackoverflow.com/",
-            "https://stackoverflow.com/users",
-            "https://stackoverflow.com/questions/",
-            "https://github.com/pulls",
-            "https://www.google.com/",
-            "google.com",
-            "www.google.com/"
-    })
-    void checkLink_shouldReturnNull(String input) {
-        assertNull(parser.checkLink(input));
+public class Parser {
+    private LinkParse linkParse;
+
+    public void setLinks(LinkParse linkParse) {
+        this.linkParse = linkParse;
     }
 
-    @Test
-    void checkLink_shouldReturnGitHubResultRecord() {
-        String input = "https://github.com/Vitalik1995Rikov/testStWars";
-        String expected = new GitHubResultRecord("Vitalik1995Rikov", "testStWars").getResult();
-
-        assertEquals(expected, parser.checkLink(input)
-                .getResult());
+    public ParseResult checkLink(String link) {
+        if (!isValidUrl(link)) {
+            return null;
+        }
+        return linkParse.check(link);
     }
 
-    @Test
-    void checkLink_shouldReturnGStackOverflowResultRecord() {
-        String input = "https://stackoverflow.com/questions/75886281/how-can-i-instantiate-in-a-grid-a-list-of-prefabs";
-        String expected = new StackOverflowResultRecord("75886281").getResult();
-
-        assertEquals(expected, parser.checkLink(input)
-                .getResult());
+    private boolean isValidUrl(String url) {
+        try {
+            new URL(url).toURI();
+            return true;
+        } catch (MalformedURLException | URISyntaxException e) {
+            return false;
+        }
     }
 }

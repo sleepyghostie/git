@@ -1,13 +1,14 @@
 package project.bot.src.main.java.ru.tinkoff.edu.java.bot.handler;
 
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-import project.bot.src.main.java.ru.tinkoff.edu.java.bot.exception.BadRequestException;
-import project.bot.src.main.java.ru.tinkoff.edu.java.bot.exception.DataNotFoundException;
-import project.bot.src.main.java.ru.tinkoff.edu.java.bot.model.response.ApiErrorResponse;
+import ru.tinkoff.edu.java.bot.exception.BadRequestException;
+import ru.tinkoff.edu.java.bot.exception.DataNotFoundException;
+import ru.tinkoff.edu.java.bot.model.response.ApiErrorResponse;
 
 @RestControllerAdvice
 public class ControllerExceptionHandler {
@@ -39,6 +40,5 @@ public class ControllerExceptionHandler {
         }
         return exceptionResponse;
     }
-
 
 }

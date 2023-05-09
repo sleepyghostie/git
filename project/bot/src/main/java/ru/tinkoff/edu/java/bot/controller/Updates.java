@@ -12,8 +12,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import project.bot.src.main.java.ru.tinkoff.edu.java.bot.model.request.LinkUpdateRequest;
-import project.bot.src.main.java.ru.tinkoff.edu.java.bot.model.response.ApiErrorResponse;
+import ru.tinkoff.edu.java.bot.model.request.LinkUpdateRequest;
+import ru.tinkoff.edu.java.bot.model.response.ApiErrorResponse;
 
 @Validated
 public interface Updates {
@@ -38,5 +38,6 @@ public interface Updates {
                     schema = @Schema())
             @Valid
             @RequestBody
-            LinkUpdateRequest body);
+            LinkUpdateRequest body
+    );
 }

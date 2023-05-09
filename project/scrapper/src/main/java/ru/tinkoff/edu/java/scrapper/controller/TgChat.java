@@ -35,7 +35,8 @@ public interface TgChat {
                     in = ParameterIn.PATH,
                     required = true,
                     schema = @Schema())
-            @PathVariable("id") Long id);
+            @PathVariable("id") Long id
+    );
 
     @Operation(summary = "Удалить чат")
     @ApiResponses(value = {
@@ -62,5 +63,6 @@ public interface TgChat {
                     in = ParameterIn.PATH,
                     required = true,
                     schema = @Schema())
-            @PathVariable("id") Long id);
+            @PathVariable("id") Long id
+    );
 }

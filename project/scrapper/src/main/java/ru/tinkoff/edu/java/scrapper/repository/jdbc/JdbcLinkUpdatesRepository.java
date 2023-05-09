@@ -2,10 +2,10 @@ package project.scrapper.src.main.java.ru.tinkoff.edu.java.scrapper.repository.j
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+import ru.tinkoff.edu.java.scrapper.exception.DataNotFoundException;
 import ru.tinkoff.edu.java.scrapper.model.dto.UpdatesDto;
 import ru.tinkoff.edu.java.scrapper.model.dto.updates.GitHubUpdatesDto;
 import ru.tinkoff.edu.java.scrapper.model.dto.updates.StackOverflowUpdatesDto;
-import ru.tinkoff.edu.java.scrapper.exception.DataNotFoundException;
 import ru.tinkoff.edu.java.scrapper.model.response.GitHubRepositoryInfoResponse;
 import ru.tinkoff.edu.java.scrapper.model.response.StackOverflowQuestionInfoResponse;
 import ru.tinkoff.edu.java.scrapper.repository.LinkUpdatesRepository;
@@ -31,7 +31,8 @@ public class JdbcLinkUpdatesRepository implements LinkUpdatesRepository {
                                 .forksCount(rs.getInt("forks_count"))
                                 .watchers(rs.getInt("watchers"))
                                 .build(),
-                        linkId);
+                        linkId
+                );
             }
             case "stack" -> {
                 query = "SELECT * FROM link_info.stackoverflow_updates WHERE id=?";
@@ -42,7 +43,8 @@ public class JdbcLinkUpdatesRepository implements LinkUpdatesRepository {
                                 .answerCount(rs.getInt("answer_count"))
                                 .isAnswered(rs.getBoolean("is_answered"))
                                 .build(),
-                        linkId);
+                        linkId
+                );
             }
             default -> throw new DataNotFoundException("Updates for link with id=" + linkId + " not found");
         }
@@ -50,9 +52,9 @@ public class JdbcLinkUpdatesRepository implements LinkUpdatesRepository {
 
     @Override
     public void setGitHubUpdate(Long id, GitHubRepositoryInfoResponse response) {
-        String query = "UPDATE link_info.github_updates " +
-                "SET forks_count = ?, watchers=? " +
-                "WHERE id = ?";
+        String query = "UPDATE link_info.github_updates "
+                + "SET forks_count = ?, watchers=? "
+                + "WHERE id = ?";
         jdbcTemplate.update(query, response.getForksCount(), response.getWatchers(), id);
     }
 
@@ -68,11 +70,10 @@ public class JdbcLinkUpdatesRepository implements LinkUpdatesRepository {
                 .map(StackOverflowQuestionInfoResponse.Items::getAnswerCount)
                 .findFirst()
                 .orElse(null);
-        String query = "UPDATE link_info.stackoverflow_updates " +
-                "SET is_answered = ?, answer_count=? " +
-                "WHERE id = ?";
+        String query = "UPDATE link_info.stackoverflow_updates "
+                + "SET is_answered = ?, answer_count=? "
+                + "WHERE id = ?";
         jdbcTemplate.update(query, isAnswered, answerCount, id);
     }
-
 
 }

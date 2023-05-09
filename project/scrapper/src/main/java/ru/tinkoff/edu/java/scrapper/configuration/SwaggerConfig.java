@@ -13,8 +13,8 @@ public class SwaggerConfig {
         return new OpenAPI()
                 .info(new Info()
                         .title("Scrapper API")
-                        .description("Endpoints implemented according to " +
-                                "<a href=\"https://gist.github.com/sanyarnd/52a78a01fa9ec234c8ad50fbc5ecc9e4\" target=\"_blank\">specification</a>")
+                        .description("Endpoints implemented according to "
+                                + "<a href=\"https://gist.github.com/sanyarnd/52a78a01fa9ec234c8ad50fbc5ecc9e4\" target=\"_blank\">specification</a>")
                         .version("1.0.0")
                         .contact(new Contact()
                                 .name("Vladislav Gadetov")

@@ -1,10 +1,8 @@
 package project.bot.src.main.java.ru.tinkoff.edu.java.bot.service;
 
+import java.util.List;
 import lombok.Data;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
-
 
 @Data
 @Service
